@@ -1,42 +1,46 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./2_factory.sol";
 contract Equipments {
-    Factory factoryContract;
     struct Equipment {
         uint256 equipmentId;
         string equipmentName;
-        uint256 cycleTime;
-        uint256 factoryId;
-    }
-
-    constructor(address _factoryContractAddress) {
-        factoryContract = Factory(_factoryContractAddress);
+        address userAddress;
+        string state;
+        uint256 productId;
     }
 
     mapping(uint256 => Equipment) public equipments;
     uint256 public equipmentCount;
 
-    event EquipmentAdded(uint256 equipmentId, string equipmentName);
+    event EquipmentAdded(
+        uint256 equipmentId,
+        string equipmentName,
+        address userAddress,
+        string state,
+        uint256 productId
+    );
 
     function addEquipment(
         string memory _equipmentName,
-        uint256 _cycleTime,
-        uint256 _factoryId
+        uint256 _productId,
+        address _userAddress
     ) external {
-        require(
-            !factoryContract.isFactoryExists(_factoryId),
-            "Factory not found"
-        );
         equipmentCount++;
         equipments[equipmentCount] = Equipment(
             equipmentCount,
             _equipmentName,
-            _cycleTime,
-            _factoryId
+            _userAddress,
+            "Stopped",
+            _productId
         );
-        emit EquipmentAdded(equipmentCount, _equipmentName);
+        emit EquipmentAdded(
+            equipmentCount,
+            _equipmentName,
+            _userAddress,
+            "Stopped",
+            _productId
+        );
     }
 
     function equipmentExists(uint256 _equipmentId) public view returns (bool) {
