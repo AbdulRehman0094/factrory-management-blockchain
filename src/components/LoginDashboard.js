@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { addUser, getAllUsers } from '../interactions/usersContract'
+import { addFactory } from '../interactions/factoryContract';
+import { getAllFactories } from '../interactions/factoryContract';
 
 function LoginDashboard() {
 
@@ -20,6 +22,8 @@ function LoginDashboard() {
   const loginFunc = () => {
 
     addUser(input);
+    addFactory(1,"Dummy");
+
   }
   return (
     <>
@@ -38,7 +42,9 @@ function LoginDashboard() {
               onChange={handleInput}
             />
           </div>
-          <Link to='/dashboard'> <button onClick={loginFunc}>Login</button></Link>
+          <Link to='/dashboard'>
+            <button onClick={loginFunc} disabled={input.length === 0}>Login</button>
+          </Link>
 
 
         </div></div>

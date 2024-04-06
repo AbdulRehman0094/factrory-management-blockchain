@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Marketplace({ name, productionunits, price }) {
+function Marketplace({ name, productionunits, price, id }) {
   const [units, setUnits] = useState('');
   const [amount, setAmount] = useState('');
 
@@ -19,6 +19,7 @@ function Marketplace({ name, productionunits, price }) {
   return (
     <div className='products bold'>
       <div>Product Name: {name}</div>
+      <div>Product ID: {id}</div>
       <div>Production Units: {productionunits}</div>
       <div>Price per Unit: {price}</div>
       <div>Enter Units to purchase:</div>
@@ -28,7 +29,7 @@ function Marketplace({ name, productionunits, price }) {
         onChange={handleUnitsChange}
       />
       <div>Total Cost: {amount}</div>
-      <button onClick={handleBuyUnits}>Buy Units</button>
+      <button onClick={handleBuyUnits} disabled={productionunits == 0}>Buy Units</button>
     </div>
   );
 }

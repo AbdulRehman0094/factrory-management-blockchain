@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
+import { addEquipment } from '../interactions/equipmentsContract';
+import { getAllEquipments } from '../interactions/equipmentsContract';
 
 function AddEquipment() {
 
-    const [productName, setName] = useState('');
-    const [productPrice, setPrice] = useState('');
-    const [productUnits, setUnits] = useState('');
+    const [equipmentName, setName] = useState('');
+    const [equipmentCycle, setPrice] = useState('');
 
 
     const handleName = (event) => {
@@ -14,12 +15,12 @@ function AddEquipment() {
     const handlePrice = (event) => {
         setPrice(event.target.value);
     };
-    const handleUnits = (event) => {
-        setUnits(event.target.value);
-    };
+  
+    const addEqui= async()=>{
 
-    const addProduct=()=>{
-        alert('Product Added Successfully.')
+        await addEquipment(equipmentName,equipmentCycle,1);
+        getAllEquipments();
+        alert('Equipment Added Successfully.')
     }
     return (
         <>
@@ -34,27 +35,27 @@ function AddEquipment() {
                         <p>Enter Equipment Name:</p>
                         <input className=''
                             type="text"
-                            value={productName}
+                            value={equipmentName}
                             onChange={handleName}
                         />
                     </div>
                     <div>
-                        <p>Enter Product Price:</p>
+                        <p>Enter Cycle Time:</p>
                         <input className=''
                             type="text"
-                            value={productPrice}
+                            value={equipmentCycle}
                             onChange={handlePrice}
                         />
                     </div>
-                    <div>
-                        <p>Enter Production Units:</p>
+                    {/* <div>
+                        <p>Enter Factory ID:</p>
                         <input className=''
                             type="text"
                             value={productUnits}
                             onChange={handleUnits}
                         />
-                    </div>
-                     <button onClick={addProduct}>Add Equipment</button>
+                    </div> */}
+                     <button onClick={addEqui}>Add Equipment</button>
 
                 </div></div>
 
