@@ -43,7 +43,7 @@ async function isUserExist(userAddress) {
 }
 
 
-// addUser();
-getAllUsers();
+// addUser('0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165');
+// getAllUsers();
 // getUserById(1);
-// isUserExist('USER_ADDRESS');
+// isUserExist('0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165');

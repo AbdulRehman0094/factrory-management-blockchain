@@ -2,7 +2,7 @@ const { userContract, web3 } = require("../connection");
 
 
 
-export async function addUser(userAddress) {
+async function addUser(userAddress) {
     try {
         // const accounts = await web3.eth.getAccounts();
         const result = await userContract.methods.addUser().send({ from: userAddress, gas: '500000' });
@@ -13,7 +13,7 @@ export async function addUser(userAddress) {
 }
 
 // Example function to get all users
-export async function getAllUsers() {
+async function getAllUsers() {
     try {
         const result = await userContract.methods.getAllUsers().call();
         console.log('All users:', result);
@@ -43,7 +43,7 @@ async function isUserExist(userAddress) {
 }
 
 
-// addUser();
-getAllUsers();
+// addUser('0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165');
+// getAllUsers();
 // getUserById(1);
-// isUserExist('USER_ADDRESS');
+// isUserExist('0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165');

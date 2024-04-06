@@ -9,14 +9,23 @@ contract Products {
         uint256 totalProduction;
         uint256 soldProduction;
         uint256 price;
+        address userAddress;
     }
 
     mapping(uint256 => Product) public products;
     uint256 public productCount;
 
-    event ProductAdded(uint256 productId, string productName);
+    event ProductAdded(
+        uint256 productId,
+        string productName,
+        address userAddress
+    );
 
-    function addProduct(string memory _productName, uint256 _price) external {
+    function addProduct(
+        string memory _productName,
+        uint256 _price,
+        address _userAddress
+    ) external {
         productCount++;
         products[productCount] = Product(
             productCount,
@@ -24,9 +33,10 @@ contract Products {
             0,
             0,
             0,
-            _price
+            _price,
+            _userAddress
         );
-        emit ProductAdded(productCount, _productName);
+        emit ProductAdded(productCount, _productName, _userAddress);
     }
 
     function updateProduction(
@@ -51,17 +61,16 @@ contract Products {
         products[_productId].price = _price;
     }
 
-    function getProductPrice(uint256 _productId)
-        external
-        view
-        returns (uint256)
-    {
+    function getProductPrice(
+        uint256 _productId
+    ) external view returns (uint256) {
         return products[_productId].price;
     }
 
-    function updateUnsoldProduction(uint256 _productId, int256 _delta)
-        external
-    {
+    function updateUnsoldProduction(
+        uint256 _productId,
+        int256 _delta
+    ) external {
         require(
             _delta >= 0 ||
                 products[_productId].unsoldProduction >= uint256(-_delta),
@@ -70,9 +79,10 @@ contract Products {
         products[_productId].unsoldProduction += uint256(_delta);
     }
 
-    function updateTotalProduction(uint256 _productId, uint256 _delta)
-        external
-    {
+    function updateTotalProduction(
+        uint256 _productId,
+        uint256 _delta
+    ) external {
         products[_productId].totalProduction += _delta;
     }
 
@@ -88,11 +98,9 @@ contract Products {
         return allProducts;
     }
 
-    function getProductById(uint256 _productId)
-        public
-        view
-        returns (Product memory)
-    {
+    function getProductById(
+        uint256 _productId
+    ) public view returns (Product memory) {
         return products[_productId - 1];
     }
 }
