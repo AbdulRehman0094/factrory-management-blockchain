@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import {addUser} from '../blockchain/interactions/usersContract'
+import { addUser, getAllUsers } from '../interactions/usersContract'
 
 function LoginDashboard() {
 
   const [input, setVal] = useState('');
 
+  useEffect(() => {
+    getAllUsers();
+  })
+
+
+
   const handleInput = (event) => {
     setVal(event.target.value);
   };
 
-  const loginFunc=()=>{
+  const loginFunc = () => {
 
     addUser(input);
   }
@@ -26,14 +32,14 @@ function LoginDashboard() {
           <div className='text1'>Dashboard Login</div>
           <div>
             <p>Enter User ID:</p>
-          <input className=''
-            type="text"
-            value={input}
-            onChange={handleInput}
-          />
+            <input className=''
+              type="text"
+              value={input}
+              onChange={handleInput}
+            />
           </div>
           <Link to='/dashboard'> <button onClick={loginFunc}>Login</button></Link>
-         
+
 
         </div></div>
 

@@ -2,7 +2,7 @@ const { userContract, web3 } = require("../connection");
 
 
 
-export async function addUser(userAddress) {
+async function addUser(userAddress) {
     try {
         // const accounts = await web3.eth.getAccounts();
         const result = await userContract.methods.addUser().send({ from: userAddress, gas: '500000' });
