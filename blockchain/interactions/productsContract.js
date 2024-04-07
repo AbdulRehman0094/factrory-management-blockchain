@@ -42,7 +42,7 @@ async function getAllProducts() {
 }
 
 // Example function to update unsold production
- async function updateUnsoldProduction(productId, delta, userAddress) {
+async function updateUnsoldProduction(productId, delta, userAddress) {
     try {
         const result = await contract.methods.updateUnsoldProduction(productId, delta).send({ from: userAddress, gas: '500000' });
         console.log('Unsold production updated:', result);
@@ -62,7 +62,7 @@ async function updateTotalProduction(productId, delta, userAddress) {
 }
 
 // Example function to update sold production
- async function updateSoldProduction(productId, delta, userAddress) {
+async function updateSoldProduction(productId, delta, userAddress) {
     try {
         const accounts = await web3.eth.getAccounts();
         const result = await contract.methods.updateSoldProduction(productId, delta).send({ from: userAddress, gas: '500000' });
@@ -73,8 +73,20 @@ async function updateTotalProduction(productId, delta, userAddress) {
 }
 
 // Example usage of the functions
-// const userAddress = '0xfc3c0278de2c03bf8fabd13cdfd3b47b70687e6a';
+const userAddress = '0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165';
 // addProduct('Product 1', 100, userAddress);
+// addProduct('Product 2', 100, userAddress);
+// addProduct('Product 3', 100, userAddress);
+
+updateTotalProduction(1, 200, userAddress);
+updateTotalProduction(2, 200, userAddress);
+updateTotalProduction(3, 200, userAddress);
+
+
+updateUnsoldProduction(1, 200, userAddress);
+updateUnsoldProduction(2, 200, userAddress);
+updateUnsoldProduction(3, 200, userAddress);
+
 // getProductById(2);
 // updatePrice(1, 150, userAddress);
 // // getAllProducts();

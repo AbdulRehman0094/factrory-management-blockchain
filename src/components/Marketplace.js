@@ -22,12 +22,15 @@ function Marketplace({ name, productionunits, price, id, sellerAddress, sold, un
     try {
       const productId = id;
       const value = amount;
-      await placeOrder(productId, units, sellerAddress, buyerAddress, value);
-      const newSold = parseInt(sold) + parseInt(units);
-      const newUnsold = parseInt(unsold) - parseInt(units);
-      await updateSoldProduction(productId, newSold, sellerAddress);
-      await updateUnsoldProduction(productId, newUnsold, sellerAddress);
-      alert(`${units} Units of ${name} purchased successfully`);
+      const result = await placeOrder(productId, units, sellerAddress, buyerAddress, value);
+      if (result) {
+        const newSold = parseInt(sold) + parseInt(units);
+        const newUnsold = parseInt(unsold) - parseInt(units);
+        await updateSoldProduction(productId, newSold, sellerAddress);
+        await updateUnsoldProduction(productId, newUnsold, sellerAddress);
+        alert(`${units} Units of ${name} purchased successfully`);
+      }
+
     } catch (error) {
       console.error('Error buying units:', error);
       alert('Failed to buy units. Please try again later.');
@@ -38,8 +41,8 @@ function Marketplace({ name, productionunits, price, id, sellerAddress, sold, un
     <div className='products bold'>
       <div>Product Name: {name}</div>
       <div>Product ID: {id}</div>
-      <div>Production Units: {productionunits}</div>
-      <div>Price per Unit: {price}</div>
+      <div>Stock Available: {unsold} units</div>
+      <div>Price per Unit: {price} Wei</div>
       <div>Enter Buyer's Address:</div>
       <input
         type="text"

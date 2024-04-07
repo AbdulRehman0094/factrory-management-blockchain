@@ -76,7 +76,7 @@ contract Products {
                 products[_productId].unsoldProduction >= uint256(-_delta),
             "Insufficient unsold production"
         );
-        products[_productId].unsoldProduction += uint256(_delta);
+        products[_productId].unsoldProduction = uint256(_delta);
     }
 
     function updateTotalProduction(
@@ -87,7 +87,7 @@ contract Products {
     }
 
     function updateSoldProduction(uint256 _productId, uint256 _delta) external {
-        products[_productId].soldProduction += _delta;
+        products[_productId].soldProduction = _delta;
     }
 
     function getAllProducts() external view returns (Product[] memory) {

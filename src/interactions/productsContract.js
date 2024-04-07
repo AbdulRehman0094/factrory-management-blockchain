@@ -56,6 +56,7 @@ export async function updateUnsoldProduction(productId, delta, userAddress) {
 // Example function to update total production
 async function updateTotalProduction(productId, delta, userAddress) {
     try {
+
         const result = await contract.methods.updateTotalProduction(productId, delta).send({ from: userAddress, gas: '500000' });
         console.log('Total production updated:', result);
     } catch (error) {
@@ -66,7 +67,6 @@ async function updateTotalProduction(productId, delta, userAddress) {
 // Example function to update sold production
 export async function updateSoldProduction(productId, delta, userAddress) {
     try {
-        const accounts = await web3.eth.getAccounts();
         const result = await contract.methods.updateSoldProduction(productId, delta).send({ from: userAddress, gas: '500000' });
         console.log('Sold production updated:', result);
         return result;

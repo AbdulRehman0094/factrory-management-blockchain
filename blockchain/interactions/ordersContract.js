@@ -29,6 +29,6 @@ const buyerAddress = '0x2a43f1264b2c22a525bb7387e81d106823086248';
 checkBalance(buyerAddress);
 // checkBalance('0x91AB7A3c4A1ca824eCa4a0B654DB408ca7e9787B');
 
-// placeOrder(1, 10, sellerAddress, buyerAddress, web3.utils.toWei('10', 'ether'));
+placeOrder(1, 10, sellerAddress, buyerAddress, 200);
 
 

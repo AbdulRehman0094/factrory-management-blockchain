@@ -2,12 +2,11 @@ const { web3, ordersContract } = require("../connection");
 
 export async function placeOrder(productId, quantity, sellerAddress, buyerAddress, value) {
     try {
-        value= web3.utils.toWei(value, 'ether');
-        const accounts = await web3.eth.getAccounts();
         const result = await ordersContract.methods
             .placeOrder(productId, quantity, sellerAddress)
             .send({ from: buyerAddress, value: value, gas: '3000000' });
         console.log('Order placed:', result);
+        return result;
     } catch (error) {
         console.error('Error placing order:', error);
     }
