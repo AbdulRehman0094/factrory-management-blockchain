@@ -11,26 +11,19 @@ function Dashboard() {
                 <Nav className="mr-auto">
                     <NavDropdown title="Products" id="products-dropdown">
                         <NavDropdown.Item href="#products-option1">
-                            <Link to='/marketplace'>Show Products</Link>
+                            <Link to='/userproducts'>Show Products</Link>
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#products-option2">
                             <Link to='/addproduct'>Add a Product</Link>
                         </NavDropdown.Item>
                     </NavDropdown>
-                    <NavDropdown title="Jobs" id="jobs-dropdown">
-                        <NavDropdown.Item href="#jobs-option1">
-                            <Link to='/showjobs'>Show Jobs</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#jobs-option2">
-                            <Link to='/addjob'>Add a Job</Link>
-                        </NavDropdown.Item>
-                    </NavDropdown>
+                    
                     <NavDropdown title="Equipments" id="equipments-dropdown">
                         <NavDropdown.Item href="#equipments-option1">
                             <Link to='/showequipments'>Show Equipments</Link>
                         </NavDropdown.Item>
                         <NavDropdown.Item href="#equipments-option2">
-                            <Link to='/addequip'>Add Equipment</Link>
+                            <Link to='/addequip'>Add Eq\uipment</Link>
                         </NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

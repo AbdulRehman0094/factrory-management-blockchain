@@ -20,16 +20,21 @@ function RenderEquipments() {
     }, []); // Empty dependency array to ensure useEffect runs only once
 
   return (
-    <div className='cards'>
-      {equipment?.map((equipment) => (
-        <EquipmentsPlace
-          id={equipment.equipmentId.toString()}
-          name={equipment.equipmentName}
-          state={equipment.state}
-          pid={equipment.productId.toString()}
-        />
-      ))}
-    </div>
+    <><div className='header'>
+    <div className='text'>Factory Management System</div>
+    
+
+  </div>
+  <div className='cards'>
+    {equipment?.map((equipment) => (
+      <EquipmentsPlace
+        id={equipment.equipmentId.toString()}
+        name={equipment.equipmentName}
+        state={equipment.state}
+        pid={equipment.productId.toString()}
+      />
+    ))}
+  </div></>
   )
 }
 
