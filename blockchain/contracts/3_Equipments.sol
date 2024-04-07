@@ -21,6 +21,7 @@ contract Equipments {
         uint256 productId
     );
 
+    event EquipmentStateChanged(uint256 equipmentId, string newState);
     function addEquipment(
         string memory _equipmentName,
         uint256 _productId,
@@ -60,5 +61,14 @@ contract Equipments {
     ) public view returns (Equipment memory) {
         Equipment memory equipment = equipments[_equipmentId - 1];
         return equipment;
+    }
+
+    function changeEquipmentState(
+        uint256 _equipmentId,
+        string memory _newState
+    ) public {
+        require(equipmentExists(_equipmentId), "Equipment does not exist");
+        equipments[_equipmentId].state = _newState;
+        emit EquipmentStateChanged(_equipmentId, _newState);
     }
 }

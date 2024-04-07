@@ -103,4 +103,8 @@ contract Products {
     ) public view returns (Product memory) {
         return products[_productId - 1];
     }
+
+    function isProductExist(uint256 _productId) public view returns (bool) {
+        return _productId > 0 && _productId <= productCount;
+    }
 }
