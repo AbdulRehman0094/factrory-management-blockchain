@@ -2,7 +2,7 @@ const { userContract, web3 } = require("../connection");
 
 
 
-async function addUser(userAddress) {
+export async function addUser(userAddress) {
     try {
         // const accounts = await web3.eth.getAccounts();
         const result = await userContract.methods.addUser().send({ from: userAddress, gas: '500000' });
@@ -13,7 +13,7 @@ async function addUser(userAddress) {
 }
 
 // Example function to get all users
-async function getAllUsers() {
+export async function getAllUsers() {
     try {
         const result = await userContract.methods.getAllUsers().call();
         console.log('All users:', result);

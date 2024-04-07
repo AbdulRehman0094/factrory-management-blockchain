@@ -1,8 +1,8 @@
 const { web3, ordersContract } = require("../connection");
 
-// Example function to place an order
-async function placeOrder(productId, quantity, sellerAddress, buyerAddress, value) {
+export async function placeOrder(productId, quantity, sellerAddress, buyerAddress, value) {
     try {
+        value= web3.utils.toWei(value, 'ether');
         const accounts = await web3.eth.getAccounts();
         const result = await ordersContract.methods
             .placeOrder(productId, quantity, sellerAddress)

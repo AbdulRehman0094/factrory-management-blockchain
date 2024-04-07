@@ -1,24 +1,41 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { addEquipment } from '../interactions/equipmentsContract';
 import { getAllEquipments } from '../interactions/equipmentsContract';
+import { getAllProducts } from '../interactions/productsContract';
 
 function AddEquipment() {
 
     const [equipmentName, setName] = useState('');
-    const [equipmentCycle, setPrice] = useState('');
+    const [produID, setProductID] = useState('');
+    const [products, setProducts] = useState([]);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const result = await getAllProducts();
+                setProducts(result);
+                if (result.length > 0) {
+                    setProductID(result[0].productId);
+                }
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     const handleName = (event) => {
         setName(event.target.value);
     };
-    const handlePrice = (event) => {
-        setPrice(event.target.value);
+    const handleProductChange = (event) => {
+        setProductID(event.target.value);
+        console.log(event.target.value)
     };
-  
-    const addEqui= async()=>{
+    const addEqui = async () => {
 
-        await addEquipment(equipmentName,equipmentCycle,1);
+        await addEquipment(equipmentName, produID, localStorage.getItem("userAddress"));
         getAllEquipments();
         alert('Equipment Added Successfully.')
     }
@@ -40,22 +57,19 @@ function AddEquipment() {
                         />
                     </div>
                     <div>
-                        <p>Enter Cycle Time:</p>
-                        <input className=''
-                            type="text"
-                            value={equipmentCycle}
-                            onChange={handlePrice}
-                        />
+                        <p>Select Product:</p>
+                        <select id="dropdown" onChange={handleProductChange}>
+                            {products?.map((product) => {
+                                return <option value={product.productId.toString()}>{product.productName}</option>
+                            }
+                            )}
+
+
+                        </select>
+
                     </div>
-                    {/* <div>
-                        <p>Enter Factory ID:</p>
-                        <input className=''
-                            type="text"
-                            value={productUnits}
-                            onChange={handleUnits}
-                        />
-                    </div> */}
-                     <button onClick={addEqui}>Add Equipment</button>
+
+                    <button onClick={addEqui}>Add Equipment</button>
 
                 </div></div>
 

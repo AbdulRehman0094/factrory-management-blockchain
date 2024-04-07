@@ -8,9 +8,9 @@ function Addproduct() {
     const [proName, setName] = useState('');
     const [proPrice, setPrice] = useState('');
 
-    // useEffect(() => {
-    //     getAllProducts();
-    //   })
+    useEffect(() => {
+        getAllProducts();
+      })
 
     const handleName = (event) => {
         setName(event.target.value);
@@ -21,7 +21,7 @@ function Addproduct() {
    
 
     const addProducts=()=>{
-        addProduct(proName,proPrice);
+        addProduct(proName,proPrice,localStorage.getItem("userAddress"));
         alert("Product Added.")
     }
     return (

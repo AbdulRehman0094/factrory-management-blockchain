@@ -26,6 +26,9 @@ function RenderMarketplaceItems() {
           name={product.productName}
           productionunits={product.totalProduction.toString()}
           price={product.price.toString()}
+          sellerAddress={product[6].toString()}
+          sold={product.soldProduction.toString()}
+          unsold={product.unsoldProduction.toString()}
         />
       ))}
     </div>

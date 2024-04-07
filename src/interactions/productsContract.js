@@ -2,7 +2,7 @@ const { web3, productsContract: contract } = require("../connection");
 
 
 // Example function to add a new product
-async function addProduct(productName, price, userAddresss) {
+export async function addProduct(productName, price, userAddresss) {
     try {
         const result = await contract.methods.addProduct(productName, price, userAddresss).send({ from: userAddresss, gas: '500000' });
         console.log('Product added:', result.events.ProductAdded.returnValues);
@@ -32,20 +32,22 @@ async function updatePrice(productId, price, userAddress) {
 }
 
 // Example function to get all products
-async function getAllProducts() {
+export async function getAllProducts() {
     try {
         const result = await contract.methods.getAllProducts().call();
         console.log('All products:', result);
+        return result;
     } catch (error) {
         console.error('Error getting all products:', error);
     }
 }
 
 // Example function to update unsold production
-async function updateUnsoldProduction(productId, delta, userAddress) {
+export async function updateUnsoldProduction(productId, delta, userAddress) {
     try {
         const result = await contract.methods.updateUnsoldProduction(productId, delta).send({ from: userAddress, gas: '500000' });
         console.log('Unsold production updated:', result);
+        return result;
     } catch (error) {
         console.error('Error updating unsold production:', error);
     }
@@ -62,11 +64,12 @@ async function updateTotalProduction(productId, delta, userAddress) {
 }
 
 // Example function to update sold production
-async function updateSoldProduction(productId, delta, userAddress) {
+export async function updateSoldProduction(productId, delta, userAddress) {
     try {
         const accounts = await web3.eth.getAccounts();
         const result = await contract.methods.updateSoldProduction(productId, delta).send({ from: userAddress, gas: '500000' });
         console.log('Sold production updated:', result);
+        return result;
     } catch (error) {
         console.error('Error updating sold production:', error);
     }

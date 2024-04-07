@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { addUser, getAllUsers } from '../interactions/usersContract'
-import { addFactory } from '../interactions/factoryContract';
-import { getAllFactories } from '../interactions/factoryContract';
 
 function LoginDashboard() {
 
@@ -19,10 +17,11 @@ function LoginDashboard() {
     setVal(event.target.value);
   };
 
+
   const loginFunc = () => {
 
     addUser(input);
-    addFactory(1,"Dummy");
+    localStorage.setItem("userAddress",input);
 
   }
   return (
