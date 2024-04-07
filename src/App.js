@@ -6,11 +6,12 @@ function App() {
   return (
     <>
       <div className='header'>
-        <div className='text'>Factory Management System</div>
-        <Link to="/logindashboard">
-          <button className='margin'>Login to Dashboard</button>
-        </Link>      
-      </div>
+      <div className='text'>Factory Management System</div>
+      <Link to="/logindashboard">
+        <button className='margin' >Login to Dashboard</button>
+      </Link>
+
+    </div>
       <RenderMarketplaceItems />
     </>
   );

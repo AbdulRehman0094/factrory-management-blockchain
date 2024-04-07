@@ -11,6 +11,7 @@ import RenderMarketplaceItems from './components/Rawdata';
 import Addjob from './components/AddJob';
 import AddEquipment from './components/AddEquipment';
 import RenderEquipments from './components/EquipmentData';
+import UserProducts from './components/UserProducts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +21,7 @@ root.render(
     <Router>
       <Routes>
         <Route path='/addjob' element={<Addjob/>} />
+        <Route path='/userproducts' element={<UserProducts/>} />
         <Route path='/showequipments' element={<RenderEquipments/>} />
         <Route path='/addequip' element={<AddEquipment />} />
         <Route path='/addproduct' element={<Addproduct />} />
