@@ -23,11 +23,11 @@ async function checkBalance(address) {
 }
 
 // Call the placeOrder function
-const sellerAddress = '0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165';
-const buyerAddress = '0xa6c9bbe3767e02100993ba13c509fb8cfbfcc3c6';
-checkBalance(sellerAddress);
+// const sellerAddress = '0x836f01347a1451efd68257a157e7a6064f171f6a';
+const buyerAddress = '0x2a43f1264b2c22a525bb7387e81d106823086248';
+// checkBalance(sellerAddress);
 checkBalance(buyerAddress);
-checkBalance('0x91AB7A3c4A1ca824eCa4a0B654DB408ca7e9787B');
+// checkBalance('0x91AB7A3c4A1ca824eCa4a0B654DB408ca7e9787B');
 
 // placeOrder(1, 10, sellerAddress, buyerAddress, web3.utils.toWei('10', 'ether'));
 

@@ -81,7 +81,6 @@
 
 .cardchild:hover {
   transform: scale(1.02); 
-  background: rgb(168, 150, 150);
 }
 
 p{
@@ -121,6 +120,10 @@ button {
 button:hover {
   background-color: #052147; 
   color: white;
+}
+button:disabled{
+  opacity: 0.5;
+  cursor: default;
 }
 
 .mmargin{

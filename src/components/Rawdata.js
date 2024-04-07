@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Marketplace from './Marketplace';
-
-const Rawdata = [
-  { name: 'Product 1', productionunits: 100, price: 10 },
-  { name: 'Product 2', productionunits: 150, price: 15 },
-  { name: 'Product 3', productionunits: 200, price: 20 }
-];
+import { getAllProducts } from '../interactions/productsContract';
 
 function RenderMarketplaceItems() {
-  return (
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const result = await getAllProducts();
+        setProducts(result);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array to ensure useEffect runs only once
+
+  return (
     <div className='cards'>
-      {Rawdata.map((product, index) => (
+      {products?.map((product, index) => (
         <Marketplace
-          key={index}
-          name={product.name}
-          productionunits={product.productionunits}
-          price={product.price}
+          id={product.productId.toString()}
+          name={product.productName}
+          productionunits={product.totalProduction.toString()}
+          price={product.price.toString()}
+          sellerAddress={product[6].toString()}
+          sold={product.soldProduction.toString()}
+          unsold={product.unsoldProduction.toString()}
         />
       ))}
     </div>

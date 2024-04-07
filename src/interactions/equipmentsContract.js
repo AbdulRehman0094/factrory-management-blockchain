@@ -3,8 +3,9 @@ const { web3, equipmentsContract: contract } = require("../connection");
 
 
 // Example function to add a new equipment
-async function addEquipment(equipmentName, productId, userAddress) {
+export async function addEquipment(equipmentName, productId, userAddress) {
     try {
+        debugger;
         const result = await contract.methods.addEquipment(equipmentName, productId, userAddress).send({ from: userAddress, gas: '500000' });
         console.log('Equipment added:', result.events.EquipmentAdded.returnValues);
     } catch (error) {
@@ -23,10 +24,11 @@ async function getEquipmentById(equipmentId) {
 }
 
 // Example function to get all equipments
-async function getAllEquipments() {
+export async function getAllEquipments() {
     try {
         const result = await contract.methods.getAllEquipments().call();
         console.log('All equipments:', result);
+        return result;
     } catch (error) {
         console.error('Error getting all equipments:', error);
     }
@@ -42,7 +44,7 @@ async function equipmentExists(equipmentId) {
 }
 
 // Example usage of the functions
-const userAddress = '0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165';
+// const userAddress = '0xb992fc5c1bddd7314d214d8619c3e3cf8ef62165';
 // addEquipment('Equipment 4', 10, userAddress);
 // equipmentExists(1);
 // getEquipmentById(2);

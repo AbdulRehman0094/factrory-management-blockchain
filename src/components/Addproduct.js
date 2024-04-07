@@ -1,12 +1,16 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { addProduct } from '../interactions/productsContract';
+import { getAllProducts } from '../interactions/productsContract';
 
 function Addproduct() {
 
-    const [productName, setName] = useState('');
-    const [productPrice, setPrice] = useState('');
-    const [productUnits, setUnits] = useState('');
+    const [proName, setName] = useState('');
+    const [proPrice, setPrice] = useState('');
 
+    useEffect(() => {
+        getAllProducts();
+      })
 
     const handleName = (event) => {
         setName(event.target.value);
@@ -14,12 +18,11 @@ function Addproduct() {
     const handlePrice = (event) => {
         setPrice(event.target.value);
     };
-    const handleUnits = (event) => {
-        setUnits(event.target.value);
-    };
+   
 
-    const addProduct=()=>{
-        alert('Product Added Successfully.')
+    const addProducts=()=>{
+        addProduct(proName,proPrice,localStorage.getItem("userAddress"));
+        alert("Product Added.")
     }
     return (
         <>
@@ -34,7 +37,7 @@ function Addproduct() {
                         <p>Enter Product Name:</p>
                         <input className=''
                             type="text"
-                            value={productName}
+                            value={proName}
                             onChange={handleName}
                         />
                     </div>
@@ -42,19 +45,12 @@ function Addproduct() {
                         <p>Enter Product Price:</p>
                         <input className=''
                             type="text"
-                            value={productPrice}
+                            value={proPrice}
                             onChange={handlePrice}
                         />
                     </div>
-                    <div>
-                        <p>Enter Production Units:</p>
-                        <input className=''
-                            type="text"
-                            value={productUnits}
-                            onChange={handleUnits}
-                        />
-                    </div>
-                     <button onClick={addProduct}>Add Product</button>
+                  
+                     <button onClick={addProducts} disabled={proName.length ===0 && proPrice.length===0}>Add Product</button>
 
                 </div></div>
 

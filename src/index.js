@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Marketplace from './components/Marketplace';
 import LoginDashboard from './components/LoginDashboard';
 import Dashboard from './components/Dashboard';
 import Addproduct from './components/Addproduct';
@@ -11,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RenderMarketplaceItems from './components/Rawdata';
 import Addjob from './components/AddJob';
 import AddEquipment from './components/AddEquipment';
+import RenderEquipments from './components/EquipmentData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -20,6 +20,7 @@ root.render(
     <Router>
       <Routes>
         <Route path='/addjob' element={<Addjob/>} />
+        <Route path='/showequipments' element={<RenderEquipments/>} />
         <Route path='/addequip' element={<AddEquipment />} />
         <Route path='/addproduct' element={<Addproduct />} />
         <Route path='/dashboard' element={<Dashboard />} />

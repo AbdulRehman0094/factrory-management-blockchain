@@ -17,9 +17,12 @@ function LoginDashboard() {
     setVal(event.target.value);
   };
 
+
   const loginFunc = () => {
 
     addUser(input);
+    localStorage.setItem("userAddress",input);
+
   }
   return (
     <>
@@ -38,7 +41,9 @@ function LoginDashboard() {
               onChange={handleInput}
             />
           </div>
-          <Link to='/dashboard'> <button onClick={loginFunc}>Login</button></Link>
+          <Link to='/dashboard'>
+            <button onClick={loginFunc} disabled={input.length === 0}>Login</button>
+          </Link>
 
 
         </div></div>
